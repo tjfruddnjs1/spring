@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments/head :: head"></th:block>
+</head>
+<body class="sb-nav-fixed">
+<th:block th:replace="fragments/nav :: nav"></th:block>
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4 mb-4">사용자 관리</h1>
+        <div class="card mb-4">
+          <div class="card-body">
+            <table class="table table-bordered thead-center tbody-center">
+              <thead>
+              <tr>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>권한</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="user : ${userList}">
+                <td><a th:href="@{/manage/user/edit/{id}(id=${user.id})}" th:text="${user.name}"></a></td>
+                <td><a th:href="@{/manage/user/edit/{id}(id=${user.id})}" th:text="${user.username}"></a></td>
+                <td><a th:href="@{/manage/user/edit/{id}(id=${user.id})}" th:text="${user.role.name}"></a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+<th:block th:replace="fragments/common-script :: common-script"/>
+</html>

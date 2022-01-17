@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .contentSecurityPolicy(cspConfig -> cspConfig.policyDirectives(
                 "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; style-src https://fonts.googleapis.com/ 'self' 'unsafe-inline'; font-src https://fonts.gstatic.com/ 'self';"))
             .and().authorizeRequests()
-            .antMatchers("/auth/login", "/").anonymous()
+            .antMatchers("/auth/login", "/", "/ws/chat").anonymous()
             .anyRequest().authenticated()
             .and().formLogin().loginPage(SpringSecurity.LOGIN_URL)
             .loginProcessingUrl(SpringSecurity.LOGIN_PROCESS_URL)

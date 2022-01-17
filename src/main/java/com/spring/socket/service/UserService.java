@@ -3,8 +3,10 @@ package com.spring.socket.service;
 import com.spring.socket.domain.User;
 import com.spring.socket.enumerate.Role;
 import com.spring.socket.repository.UserRepository;
+import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +21,10 @@ public class UserService implements UserDetailsService {
     @NonNull
     private final UserRepository userRepository;
 
+    public List<User> findAll() {
+        return userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         return userRepository.findByUsername(userName)
@@ -30,7 +36,7 @@ public class UserService implements UserDetailsService {
         if (user.getPassword() != null) {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         }
-        user.setRole(Role.USER);
+        user.setRole(Role.ROLE_USER);
         userRepository.save(user);
     }
 }
