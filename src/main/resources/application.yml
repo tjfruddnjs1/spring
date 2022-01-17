@@ -44,10 +44,12 @@ spring:
 
   devtools:
     livereload:
-      enabled: false
+      enabled: true
     add-properties: false
     restart:
       enabled: false
+  freemarker:
+    cache: false
 
   web:
     resources:
