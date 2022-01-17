@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="nav">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" th:href="@{/}">socket</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="ms-auto pe-3">
+      <a class="order-1 order-lg-0 me-4 me-lg-0" th:href="@{/auth/logout}" sec:authorize="isAuthenticated()">
+        <i class="fas fa-door-closed"></i>
+        Logout
+      </a>
+    </div>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <div class="sb-sidenav-menu-heading">Core</div>
+            <a class="nav-link" th:href="@{/}">
+              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+              메인화면
+            </a>
+          </div>
+        </div>
+        <div class="d-flex sb-sidenav-footer justify-content-around"
+             sec:authorize="isAuthenticated()">
+          <div class="small">Logged in:</div>
+          <p sec:authentication="principal.name"></p>
+        </div>
+        <div class="d-flex sb-sidenav-footer justify-content-around" sec:authorize="isAnonymous()">
+          <div class="small">로그인해주세요</div>
+          <a class="text-white" th:href="@{/auth/login}">로그인</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</th:block>
+</html>

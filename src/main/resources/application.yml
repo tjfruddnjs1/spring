@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /socket
+    encoding:
+      charset: UTF-8
+    session:
+      timeout: -1
+  error:
+    whitelabel:
+      enabled: true
+    include-stacktrace: always
+
+spring:
+  servlet:
+    multipart:
+      location: /socket/
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  main:
+    web-application-type: servlet
+
+  datasource:
+    url: jdbc:mariadb://localhost:3307/socket
+    username: root
+    password: uInsight!00
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    databaseplatform: org.hibernate.dialect.MariaDB103Dialect
+    hibernate:
+      ddlauto: create
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    showsql: true
+    open-in-view: true
+    defer-datasource-initialization: true
+
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+
+  devtools:
+    livereload:
+      enabled: false
+    add-properties: false
+    restart:
+      enabled: false
+
+  web:
+    resources:
+      chain:
+        compressed: true
+        enabled: true
+        cache: true
+  sql:
+    init:
+      mode: always
+      separator: ^;
