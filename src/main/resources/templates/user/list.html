@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments/head :: head"></th:block>
+</head>
+<body class="sb-nav-fixed">
+<th:block th:replace="fragments/nav :: nav"></th:block>
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4 mb-4">Users</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a th:href="@{/}">Main</a></li>
+          <li class="breadcrumb-item active">Users</li>
+        </ol>
+        <div class="card mb-4">
+          <div class="card-body">
+            사용자의 닉네임, 이메일, 권한 등을 수정하고 추가할 수 있습니다.
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header d-flex justify-content-between">
+            <div class="align-self-center">
+              <i class="fas fa-table me-1"></i>
+              User List
+            </div>
+            <div class="align-self-center">
+              <a class="btn btn-primary" th:href="@{/user/edit}">추가</a>
+              <button class="btn btn-danger">삭제</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table id="tableUser" class="table table-bordered thead-center tbody-center">
+              <thead>
+              <tr>
+                <th>닉네임</th>
+                <th>이메일</th>
+                <th>권한</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="user : ${userList}">
+                <td><a th:href="@{/user/edit/{id}(id=${user.id})}" th:text="${user.name}"></a></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.role.value}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+<th:block th:replace="fragments/common-script :: common-script"/>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(`#tableUser`).DataTable();
+  });
+</script>
+</html>

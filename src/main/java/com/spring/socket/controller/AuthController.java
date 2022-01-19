@@ -14,21 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-
-    @NonNull
-    private final UserService userService;
-
     @GetMapping("/login")
     public String login() {
         return "auth/login";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<User> userList = userService.findAll();
-
-        model.addAttribute("userList", userList);
-        return "auth/list";
-    }
 }
 

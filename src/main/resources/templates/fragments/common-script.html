@@ -5,11 +5,19 @@
 </head>
 <body>
 <th:block th:fragment="common-script">
-  <scirpt th:src="@{/static/js/datatables.min.js}"></scirpt>
-  <scirpt th:src="@{/static/js/Chart.min.js}"></scirpt>
+  <script th:src="@{/static/js/jquery.min.js}"></script>
+  <script th:src="@{/static/js/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/static/js/Chart.min.js}"></script>
   <script th:src="@{/static/js/fontawesome.min.js}"></script>
   <script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/static/js/scripts.js}"></script>
+
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    window.contextRoot = /*[[ @{/} ]]*/'/';
+    window.controllerName = /*[[ ${controllerName} ]]*/'';
+    /*]]>*/
+  </script>
 </th:block>
 </body>
 </html>

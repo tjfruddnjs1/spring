@@ -3,7 +3,6 @@ package com.spring.socket.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.socket.enumerate.Role;
 import com.spring.socket.util.DateUtil;
-import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,12 +53,10 @@ public class User implements UserDetails {
     @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "timestamp(6) default current_timestamp(6) on update current_timestamp(6)")
     private LocalDateTime updateDate;
 
-    @NotNull
-    @Size(min = 4, max = 16)
+    @NonNull
     @Column(unique = true, nullable = false, updatable = false, length = 38)
     private String username;
 
-    @NotBlank
     @Size(min = 2, max = 10)
     @Column(nullable = false)
     private String name;
@@ -67,6 +65,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
+    @NotBlank
     @Column(nullable = false)
     @JsonIgnore
     private String password;

@@ -27,9 +27,13 @@
             </a>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
               <div class="sb-sidenav-menu-heading">관리</div>
-              <a class="nav-link" th:href="@{/auth/list}">
+              <a class="nav-link" th:href="@{/user/list}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 사용자 관리
+              </a>
+              <a class="nav-link" th:href="@{/chat/room/enter/hello}">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                채팅방
               </a>
             </div>
           </div>

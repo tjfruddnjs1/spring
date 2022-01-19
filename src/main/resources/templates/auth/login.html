@@ -16,7 +16,7 @@
                 <form th:action="@{/auth/login/process}" method="post">
                   <div class="form-floating mb-3">
                     <input class="form-control" id="username" name="username"/>
-                    <label for="username">아이디</label>
+                    <label for="username">이메일</label>
                   </div>
                   <div class="form-floating mb-3">
                     <input class="form-control" id="password" name="password" type="password"/>
@@ -35,6 +35,5 @@
     </main>
   </div>
 </div>
-<th:block th:replace="fragments/common-script :: common-script"/>
 </body>
 </html>
