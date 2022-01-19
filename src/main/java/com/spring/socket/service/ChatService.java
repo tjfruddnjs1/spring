@@ -6,6 +6,7 @@ import com.spring.socket.repository.ChatRoomRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,13 @@ public class ChatService {
     }
 
     @Transactional
-    public ChatRoom save(ChatRoom chatRoom) {
-        return chatRoomRepository.save(chatRoom);
+    public void save(ChatRoom chatRoom) {
+        if(chatRoom.getUuid().isEmpty()){
+            chatRoom.setUuid(UUID.randomUUID().toString());
+        }
+         chatRoomRepository.save(chatRoom);
     }
 
-    @Transactional
     public ChatRoom findRoomByRoomName(String roomName) {
         return chatRoomRepository.findRoomByRoomName(roomName);
     }

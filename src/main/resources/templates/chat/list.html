@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments/head :: head"></th:block>
+</head>
+<body class="sb-nav-fixed">
+<th:block th:replace="fragments/nav :: nav"></th:block>
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4 mb-4">Rooms</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a th:href="@{/}">Main</a></li>
+          <li class="breadcrumb-item active">ChatRooms</li>
+        </ol>
+        <div class="card mb-4">
+          <div class="card-body">
+            채팅방 목록
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header d-flex justify-content-between">
+            <div class="align-self-center">
+              <i class="fas fa-table me-1"></i>
+              Chat List
+            </div>
+            <div class="align-self-center">
+              <a class="btn btn-primary" th:href="@{/room/create}">추가</a>
+              <button class="btn btn-danger">삭제</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table id="tableRoom" class="table table-bordered thead-center tbody-center">
+              <thead>
+              <tr>
+                <th>방이름</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="room : ${roomList}">
+                <td><a th:href="@{/chat/room/edit/{roomName}(roomName=${room.roomName})}" th:text="${room.roomName}"></a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+<th:block th:replace="fragments/common-script :: common-script"/>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(`#tableRoom`).DataTable();
+  });
+</script>
+</html>
